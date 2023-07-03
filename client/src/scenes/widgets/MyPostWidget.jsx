@@ -84,11 +84,9 @@ const MyPostWidget = ({ picturePath }) => {
           p="1rem"
         >
           <Dropzone
-            acceptedFiles=".jpg,.jpeg,.png"
+            acceptedFiles=".jpg, .jpeg, .png"
             multiple={false}
-            onDrop={(acceptedFiles) =>
-              setImage(acceptedFiles[0])
-            }
+            onDrop={(acceptedFiles) => setImage(acceptedFiles[0])}
           >
             {({ getRootProps, getInputProps }) => (
                 <FlexBetween>

@@ -1,9 +1,8 @@
 import Post from "../models/Post.js";
 import User from "../models/User.js";
 
-/* Create */
 
-
+//Create post 
 export const createPost = async (req, res) => {
 
     try {
@@ -32,7 +31,7 @@ export const createPost = async (req, res) => {
     }
 }
 
-/* Read */
+//Reading All the Post in the database
 export const getFeedPosts = async (req, res) => {
     try {
             const posts = await Post.find();
@@ -42,6 +41,7 @@ export const getFeedPosts = async (req, res) => {
         }
 }
 
+//Getting users posts 
 export const getUserPosts = async (req, res) => {
 
     try {
@@ -54,8 +54,8 @@ export const getUserPosts = async (req, res) => {
 
 }
 
-/* Update */ 
 
+//Like and Dislike endpoint
 export const likePost = async (req, res) => {
 
     try {

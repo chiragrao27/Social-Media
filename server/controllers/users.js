@@ -1,6 +1,6 @@
 import User from "../models/User.js";
 
-/* READ */
+//Getting users info using userID
 export const getUser = async (req, res) => {
 
     try {
@@ -15,7 +15,7 @@ export const getUser = async (req, res) => {
 
 }
 
-/* Freinds */
+//Getting users friends from the friends array 
 export const getUserFriends = async (req, res) => {
     try {
 
@@ -26,6 +26,7 @@ export const getUserFriends = async (req, res) => {
             user.friends.map((id) => User.findById(id))
         );
 
+        //mapping friends
         const formattedFriends = friends.map(
             ({ _id, firstName, lastName, occupation, location, picturePath }) =>{
                 return { _id, firstName, lastName, occupation, location, picturePath};
@@ -39,8 +40,8 @@ export const getUserFriends = async (req, res) => {
     }
 }
 
-/* Update Friends*/
 
+//Add & Remove friends 
 export const addRemoveFriend = async (req, res) => {
     
     try {
@@ -49,10 +50,13 @@ export const addRemoveFriend = async (req, res) => {
         const user = await User.findById(id);
         const friend = await User.findById(friendId);
 
+        //If frined already present removing it from the array of the both friends
         if(user.friends.includes(friendId)) {
             user.friends = user.friends.filter((id) => id !== friendId);
             friend.friends = friend.friends.filter((id) => id !== id);
-        }  else {
+        }  
+        //Else adding both in the array 
+        else {
             user.friends.push(friendId);
             friend.friends.push(id);
         }
