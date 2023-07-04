@@ -18,10 +18,14 @@ const postSchema = mongoose.Schema(
         description : String,
         picturePath : String,
         userPicturePath : String,
+        
+        //An like object with type of map and boolean properties.
         likes : {
             type : Map,
             of : Boolean,
         },
+
+        //Comments array 
         comments : {
             type : Array,
             default :[]

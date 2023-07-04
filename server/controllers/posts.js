@@ -6,8 +6,12 @@ import User from "../models/User.js";
 export const createPost = async (req, res) => {
 
     try {
+
+        //Getting the userId, description and picturePath from client.
         const {userId, description , picturePath} = req.body;
         const user = await User.findById(userId);
+
+        //Creating new post 
         const newPost = new Post({
             userId,
             firstName : user.firstName,
@@ -20,6 +24,7 @@ export const createPost = async (req, res) => {
             comments :[]
         });
 
+        //Saving the post
         await newPost.save();
 
         const post = await Post.find();
@@ -34,6 +39,7 @@ export const createPost = async (req, res) => {
 //Reading All the Post in the database
 export const getFeedPosts = async (req, res) => {
     try {
+            //Getting all the posts in the database
             const posts = await Post.find();
             res.status(200).json(posts);
         } catch (error) {
@@ -59,17 +65,19 @@ export const getUserPosts = async (req, res) => {
 export const likePost = async (req, res) => {
 
     try {
-
+        //Getting the postId from the params and userId from body.
         const postId = req.params.id;
         const {userId} = req.body;
+
+        //Getting post from the postId and then getting likes object from the post.
         const post = await Post.findById(postId);
         const isLiked = post.likes.get(userId);
 
         console.log(postId);
         console.log(userId);
         
-       
-
+       //Checking if user has already liked the post if yes then delete the userId from the Object
+       //Else Adding the new userId to the object
         if(isLiked) {
             post.likes.delete(userId);
         }
@@ -77,6 +85,7 @@ export const likePost = async (req, res) => {
             post.likes.set(userId, true);
         }
 
+        //Updating the post afte the alteration of the like Object.
         const updatedPost = await Post.findByIdAndUpdate (
             postId,
             { likes : post.likes},

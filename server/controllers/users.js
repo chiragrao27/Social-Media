@@ -19,14 +19,16 @@ export const getUser = async (req, res) => {
 export const getUserFriends = async (req, res) => {
     try {
 
+        //Getting user from the userId 
         const {id} = req.params;
         const user = await User.findById(id);
 
+        //Finding all the friends array and mapping each one of the friend.
         const friends = await Promise.all(
             user.friends.map((id) => User.findById(id))
         );
 
-        //mapping friends
+        //mapping friends for the client in a specificied manner.
         const formattedFriends = friends.map(
             ({ _id, firstName, lastName, occupation, location, picturePath }) =>{
                 return { _id, firstName, lastName, occupation, location, picturePath};
