@@ -76,9 +76,19 @@ const Form = () => {
         const savedUser = await savedUserResponse.json();
         onSubmitProps.resetForm();
 
+       
+       
         if(savedUser){
-            setpageType("login");
+            dispatch(
+                setLogin({
+                    user: savedUser.user,
+                    token: savedUser.token,
+                })
+            );
+            navigate("/home");
         }
+
+        
     };
 
     const login = async (values, onSubmitProps) => {
@@ -239,7 +249,7 @@ const Form = () => {
                                 helperText={touched.email && errors.email}
                                 sx ={{gridColumn: "span 4"}}
                                 /> 
-
+                            
                             <TextField
                                 label="Password"
                                 type="password"
@@ -256,6 +266,7 @@ const Form = () => {
                         </Box>
 
                         {/* Button */}
+                        
                         <Box>
                             <Button
                             fullWidth
@@ -275,6 +286,7 @@ const Form = () => {
                                 onClick={()=> {
                                 setpageType(isLogin ? "register" : "login");
                                 resetForm();
+
                             }}
                             sx={{
                                 textDecoration:"underline",

@@ -56,7 +56,7 @@ const PostWidget = ({
             });
             const updatedPost = await response.json();
             dispatch(setPost({ post : updatedPost}));
-            window.location.reload(false);
+            
 
     };
 

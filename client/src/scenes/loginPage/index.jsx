@@ -28,23 +28,27 @@ const LoginPage = () => {
     <Box width="100%" backgroundColor ={theme.palette.background.alt}
     p="1rem 6%" textAlign="center">
     
-    <Box>
-    <Typography 
+    <Box >
+    <Typography
       fontWeight="bold"
-      fontSize = "32px"
+      fontSize = "35px"
       color="primary"
       >
         Socials
-      </Typography>
-
-      
-      <IconButton onClick={() => dispatch(setMode())}>
+        </Typography>
+        <Box>
+        <IconButton  onClick={() => dispatch(setMode())}>
         {theme.palette.mode === "dark" ? (
-          <DarkMode sx={{ fontSize : "25px"}} />
+          <DarkMode sx={{  fontSize : "25px", }} />
         ):(
         <LightMode sx={{ color : dark, fontSize : "25px" }}/>
         )}
       </IconButton>
+      </Box>
+      
+
+      
+      
       </Box>
       </Box>
       <Box 
@@ -60,7 +64,16 @@ const LoginPage = () => {
           sx = {{ mb : "1.5rem"}}
           textAlign="center">
             Welcome to Socials
-
+            
+          </Typography>
+          
+          <Typography 
+          fontWeight="400"
+          fontSize="15px"
+          sx={{mb:"1.5rem"}}
+          textAlign="center"
+          color="primary">
+            Enter the world of social
           </Typography>
 
           <Form/>
