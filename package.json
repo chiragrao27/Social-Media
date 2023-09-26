@@ -1,0 +1,12 @@
+{
+  "name": "social-media",
+  "version": "1.0.0",
+  "description": "Socials is a social media website based on MERN.  front-end of the website is done using ReactJs and CSS. While the backend is done using NodeJs, ExpressJs, and databased used is MongoDB",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

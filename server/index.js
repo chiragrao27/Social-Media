@@ -57,6 +57,7 @@ app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
 app.use("/post", postRoutes);
 
+
 /* Mongoose Setup */
 const PORT = process.env.PORT || 6001;
 mongoose.connect( process.env.MONGO_URL, {
@@ -68,7 +69,7 @@ mongoose.connect( process.env.MONGO_URL, {
             console.log(`Server PORT : ${PORT}`);
 
             /* Add Data one time */
-            // User.insertMany(users);
-            // Post.insertMany(posts);
+            //  User.insertMany(users);
+            //  Post.insertMany(posts);
         });
 }).catch((error) => console.log(`${error} did not connect to Database`));

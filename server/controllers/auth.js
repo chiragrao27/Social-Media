@@ -85,4 +85,46 @@ export const login = async (req, res) => {
     } catch (error) {
        res.status(404).send({error: error.message}); 
     }
+
+    
 }
+
+export const updatePassword = async (req, res) => {
+    try {
+        const {email, password, newPassword} = req.body;
+       
+        const user = await User.findOne({email});
+        if(!user){
+            res.status(404).send({error: 'User not found'});
+        }
+
+        const match = await bcrypt.compare(password, user.password);
+        if(!match) {
+            res.status(400).send({error: 'Password does not match. Please try again !!!'});
+        }else{
+            const salt = await bcrypt.genSalt();
+            const hashPassword = await bcrypt.hash(newPassword, salt);
+
+            
+
+            await User.updateOne(
+                { _id: user._id },
+                {
+                  $set: {
+                    password: hashPassword,
+                  },
+                }
+              );
+            
+            
+
+            const updatedUser = await User.findOne(user._id);
+
+            res.status(200).send({message:updatedUser});
+             
+        }
+
+    } catch (error) {
+        res.status(500).send({error: error.message});
+    }
+};

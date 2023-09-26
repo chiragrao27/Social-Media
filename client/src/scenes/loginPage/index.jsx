@@ -7,6 +7,7 @@ import {
   IconButton,
 } from '@mui/material';
 import Form from "./Form";
+import UpdateForm from './PassUpdate';
 
 import {
   DarkMode,
@@ -77,6 +78,7 @@ const LoginPage = () => {
           </Typography>
 
           <Form/>
+          <UpdateForm/>
           
       </Box>
   </Box>

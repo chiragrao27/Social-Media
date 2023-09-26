@@ -13,7 +13,7 @@ import {
 import FlexBetween from "components/FlexBetween";
 import Friend from "components/Friend";
 import WidgetWrapper from "components/WidgetWrapper";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch , useSelector } from "react-redux";
 import { setPost } from "state";
 
@@ -56,6 +56,8 @@ const PostWidget = ({
             });
             const updatedPost = await response.json();
             dispatch(setPost({ post : updatedPost}));
+        
+            
             
 
     };
